@@ -8,7 +8,9 @@
     </tr>
   </thead>
   <tbody>
-    <% User.find(params[:id]).books.each do |book| %>
+    <% @books.each do |book| %>
+    <!--<%# User.find(params[:id]).books.each do |book| %>-->
+    <!--昨日は上記の記述で動いていたがbookのindexがひらけなくなった-->
       <tr>
         <td><%= link_to user_path(book.user) do %>
           <%= attachment_image_tag(book.user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %>

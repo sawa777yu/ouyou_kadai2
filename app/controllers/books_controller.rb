@@ -4,7 +4,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @books = Book.new
     @user = @book.user
-    
+
   end
 
   def index
