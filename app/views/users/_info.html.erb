@@ -8,14 +8,31 @@
 	  <th>introduction</th>
 	  <th><%= user.introduction %></th>
   </tr>
+  <tr>
+	  <th>folows</th>
+	  <th>
+  	  <%= link_to user_followings_path(user) do %>
+    	  <%= user.follower_of_relationships.count %>
+  	  <% end %>
+  	  <!--<th>などの要素ダグはlinl_toの中に書いてしまうとリンクにならなかった-->
+	  </th>
+  </tr>
+  <tr>
+	  <th>followers</th>
+	  <th>
+  	  <%= link_to user_followers_path(user) do %>
+  	    <%= user.followed_of_relationships.count %>
+  	  <% end %>
+  	</th>
+  </tr>
 </table>
 
 <div class='row'>
-  <%# if user.id = current_user.id %>
-  <!--ここのif文はそもそも不要なのだが記録として残す。-->
+  <% if user.id == current_user.id %>
+  <!--ここのif文で起きたエラーを記録として残す。-->
   <!--このif文で比較ではなく代入を行っていたがためにuserのshowページの@userにカレントユーザーの値が入ってしまい-->
   <!--望み通りの挙動にならなかった。インスタンス変数の同じ異なる内容の部分テンプレートを用いてビューを作成する場合は-->
   <!--部分テンプレートの内容によっては途中で渡す内容が変わることに注意-->
     <%= link_to '',edit_user_path(user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
-  <%# end %>
+  <% end %>
 </div>
