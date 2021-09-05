@@ -5,7 +5,11 @@ class SearchsController < ApplicationController
     @method = params[:method]
     @records = search_for(@model, @content, @method)
   end
-  
+
+  # 解答だと以下はuserとbookのモデルに記載をしている。
+  # userテーブルなのかbookテーブルなのかのif文は以下ではなくsearchメソッドの@recordのインスタンス変数のところでしている
+  # 個人的にはsearchのコントローラは記述量も少ないしここにまとめたほうが良いような気はするけれど意味はあるのだろうか
+
   private
   def search_for(model, content, method)
     if model == 'user'
@@ -37,6 +41,6 @@ class SearchsController < ApplicationController
       else
         Book.all
       end
-    end  
-  end  
+    end
+  end
 end

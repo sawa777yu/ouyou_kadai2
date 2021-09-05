@@ -1,0 +1,12 @@
+$(".favorite-btn").html("<%= escape_javascript(render partial: 'favorites/favorite-btn',locals: {book: @book}) %>");
+$(".favorite-btn_<%= @book.id %>").html("<%= escape_javascript(render partial: 'favorites/favorite-btn',locals: {book: @book}) %>");
+<!--なぜbook/index.html.erbでは@book.idが必要なのか-->
+<!--推測-->
+<!--renderで定義をしている@bookに、booksのcontrollerにおいて何が入っているのかがポイントな気がする。-->
+<!--まず、favoriteの各アクションを起こすのにはuser_idとbook_idが必要-->
+<!--user_idについてはどこで定義しているのかは分かっていないがcurrent_userのidを持っているっぽい-->
+<!--book_idについて、books#showでは@book = Book.find(params[:id]と定義されており、この時点でどのbookのidなのかを持っている-->
+<!--だから別途book_idを指定する必要は無い-->
+<!--しかし、books#indexでは_index.html.erbでブロック変数としてbookが定義されており、その中身が@booksとなっている-->
+<!--books#indexにおいて@books = Book.allとなっているので、Bookモデルの中身を配列で全て持っている。-->
+<!--ここで@book.idを改めて指定してやることでfavorites_controllerのcreateアクションで定義されているbook_idをもたせている？-->

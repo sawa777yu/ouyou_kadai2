@@ -8,10 +8,10 @@ class User < ApplicationRecord
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :follower_of_relationships, class_name: "Relationship", foreign_key:"follower_id", dependent: :destroy
-  # :follower_of_relationships =  多分この文字はわかりやすければ何でも良い。これを使って後述の値を呼び出せる？
-  # class_name: "Relationships" = has_manyとかの後ろには本来はテーブル名とかが入ってくるのだと思うが中間リレーションを使った時は別の名前を当てる（？）ので
-  # ここでRelationshipのもテーブルを見てくださいねと定義する
-  # foreign_key:"follower_id" = class_nameで指定したテーブルのfollower_idというカラムを参照してくださいねという意味
+  # :follower_of_relationships <=  多分この文字はわかりやすければ何でも良い。これを使って後述の値を呼び出せる？
+  # class_name: "Relationships" <= has_manyとかの後ろには本来はテーブル名とかが入ってくるのだと思うが中間リレーションを使った時は別の名前を当てる（？）ので
+  # ここでRelationshipのテーブルを見てくださいねと定義する
+  # foreign_key:"follower_id" <= class_nameで指定したテーブルのfollower_idというカラムを参照してくださいねという意味
   has_many :followings, through: :follower_of_relationships, source: :followed
   has_many :followed_of_relationships, class_name: "Relationship", foreign_key:"followed_id", dependent: :destroy
   has_many :followers, through: :followed_of_relationships, source: :follower
