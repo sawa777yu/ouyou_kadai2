@@ -1,4 +1,6 @@
 $(".favorite-btn").html("<%= escape_javascript(render partial: 'favorites/favorite-btn',locals: {book: @book}) %>");
+<!--解答にbooks#showのクラスにも@book.idを指定してやることで上記の記述はいらなかったみたい-->
+
 $(".favorite-btn_<%= @book.id %>").html("<%= escape_javascript(render partial: 'favorites/favorite-btn',locals: {book: @book}) %>");
 <!--なぜbook/index.html.erbでは@book.idが必要なのか-->
 <!--推測-->

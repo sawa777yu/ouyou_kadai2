@@ -1,2 +1,4 @@
 $(".favorite-btn").html("<%= escape_javascript(render partial: 'favorites/favorite-btn',locals: {book: @book}) %>");
+<!--createと同様、上記の記述はいらなかったみたい-->
+
 $(".favorite-btn_<%= @book.id %>").html("<%= escape_javascript(render partial: 'favorites/favorite-btn',locals: {book: @book}) %>");
