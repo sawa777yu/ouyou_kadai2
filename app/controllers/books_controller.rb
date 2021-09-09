@@ -8,9 +8,9 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.includes(:user_id).sort {|a,b| b.user_id.size <=> a.user_id.size}
+    @books = Book.includes(:user_id_favorite).where(created_at: Time.current.all_week).sort {|a,b| b.user_id_favorite.size <=> a.user_id_favorite.size}
     # @books = Book.all
-    # いいね数のソート機能実装のために@booksの値を
+    # いいね数のソート機能実装のために@booksの値を変更。
     @book = Book.new
     # @bookはもともと定義していなかったのに投稿ができていたのはなぜ
   end
