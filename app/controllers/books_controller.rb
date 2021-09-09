@@ -8,7 +8,9 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    @books = Book.includes(:user_id).sort {|a,b| b.user_id.size <=> a.user_id.size}
+    # @books = Book.all
+    # いいね数のソート機能実装のために@booksの値を
     @book = Book.new
     # @bookはもともと定義していなかったのに投稿ができていたのはなぜ
   end

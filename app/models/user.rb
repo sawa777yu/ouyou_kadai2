@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  # has_many :book_id, through: :favorites, source: :book
+  # いいねのランキング機能実装について参考にしたサイトに上記記述もあったのだが、bookからfavoritesに関するuserモデルのuser_idを参照したいだけなので
+  # この記述は不要だと思う。試しに外したらいけた。
   has_many :follower_of_relationships, class_name: "Relationship", foreign_key:"follower_id", dependent: :destroy
   # :follower_of_relationships <=  多分この文字はわかりやすければ何でも良い。これを使って後述の値を呼び出せる？
   # class_name: "Relationships" <= has_manyとかの後ろには本来はテーブル名とかが入ってくるのだと思うが中間リレーションを使った時は別の名前を当てる（？）ので
